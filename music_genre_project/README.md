@@ -3,7 +3,7 @@
 ## 项目介绍
 
 使用本地 GTZAN 数据集，完成 WAV 音频读取、MFCC 特征提取、KNN 分类、结果评估和单曲预测
-数据集来源：Kaggle 上的 GTZAN 副本（https://www.kaggle.com/datasets/sohamtenno007/gtzan-genre-dataset-original ），下载解压后将 10 个流派子目录放到 archive/Data/genres_original/ 下即可运行。
+数据集来源：Kaggle 上的 GTZAN 副本（https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification），下载解压后将 10 个流派子目录放到 archive/Data/genres_original/ 下即可运行。
 
 ## 文件结构
 
