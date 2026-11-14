@@ -1,12 +1,8 @@
-# 音乐流派分类（基础课程版）
+# 音乐流派分类
 
 ## 项目介绍
 
-使用本地 GTZAN 数据集，完成 WAV 音频读取、MFCC 特征提取、KNN 分类、结果评估和单曲预测。只使用基础 Python、NumPy、SciPy、scikit-learn 和 Matplotlib，不使用深度学习框架。KNN 的距离计算和投票由普通函数实现，scikit-learn 仅用于数据划分和评估。
-
-参考教程：https://data-flair.training/blogs/python-project-music-genre-classification/
-
-保留教程的 MFCC + (OUTPUT_DIR / 'skipped_files.txt').write_text('6\n'.join(errors), encoding='utf-8')KNN 思路。本项目为了便于基础课程学习，将教程的均值、协方差距离改成 13 维 MFCC 的均值和标准差，共 26 维特征，再使用标准化后的欧氏距离。因此不是原文算法的逐行复现，结果不能直接与原文比较。KNN 是传统机器学习算法。
+使用本地 GTZAN 数据集，完成 WAV 音频读取、MFCC 特征提取、KNN 分类、结果评估和单曲预测
 
 ## 文件结构
 
@@ -26,14 +22,9 @@ Music_Classification/
     └── outputs/                  运行后自动生成
 ```
 
-直接读取上一级的原始数据，不需要复制大体积音频。已检查本地有 10 个类别，每类 100 个 WAV 文件；数量检查不代表所有音频均可解码。类别为 blues、classical、country、disco、hiphop、jazz、metal、pop、reggae、rock。
-
-本项目重新从 WAV 提取特征，不使用已有 CSV：CSV 的特征定义不同，直接混用会造成训练和预测输入不一致。也不将 3 秒切片随机混入训练和测试集，以免同一首歌同时出现在两边。
-
 ## 安装和运行
 
-虚拟环境在仓库根目录 `Music_Classification\.venv`，已用 Python 3.13 创建并按 `requirements.txt` 装好依赖。日常运行只需在 PowerShell 中执行：
-
+虚拟环境在仓库根目录 `Music_Classification\.venv`
 ```powershell
 cd C:\Users\su\Downloads\Music_Classification\music_genre_project
 ..\.venv\Scripts\python.exe prepare_data.py
@@ -80,8 +71,3 @@ MFCC 计算封装在传统信号处理库中，不需要初学者手写傅里叶
 - predictions.csv：测试文件名、真实类别、预测类别和是否正确。
 - confusion_matrix.png：混淆矩阵，行为真实类别，列为预测类别。
 
-## 当前验证情况与限制
-
-已完成目录、数据数量和依赖安装检查，虚拟环境可用：`features.py` 对 `blues.00000.wav` 的实际调用已跑通，输出 26 维特征。完整的 `prepare_data.py` 和 `train.py` 尚未执行，因此文中不提供未经运行的准确率或模型文件；按上述顺序执行即可生成实际结果。
-
-只支持 SciPy 可读取的 WAV，MP3 需先转换。坏音频会在特征提取阶段跳过并记录，因此实际样本数可能不足 1000。新音频也应是音乐片段；输出是十类中的最近类别，不表示模型能够识别未知流派。整曲随机划分仍不能保证不同艺人或重复录音完全隔离，实验成绩只用于基础练习。
